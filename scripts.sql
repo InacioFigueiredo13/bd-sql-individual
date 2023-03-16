@@ -21,7 +21,7 @@ CREATE TABLE registro (
     temperatura FLOAT,
     fkSensor INT);
 
-INSERT INTO cliente (nomeFantasia, cnpj, cpf, email, senha) VALUES
+INSERT INTO cliente(nomeFantasia, cnpj, cpf, email, senha) VALUES
 	('ColdFish','05312647000172','99999934254','coldfish@adm@outlook.com','iaweim183'),
     ('FishTransportation','04872941200044','38461628491734','fishTranspor@gmail.com','jkiaj89#'),
     ('Peixe Feliz','03249172849004','91276481732941','happyfish@hotmail.com','iasdoij@93'),
@@ -33,13 +33,22 @@ INSERT INTO cliente (nomeFantasia, cnpj, cpf, email, senha) VALUES
     ('Peixe Samu','05312647000172','18948129894145','samucaFish@gmail.com','senha902'),
     ('Tech','05312647000172','27451647182648','tech@outlook.com','jdasu289');
 
-INSERT INTO sensor (nome, tipo, preco) VALUES
+INSERT INTO sensor(nome, tipo, preco) VALUES
 	('Sensor de Temperatura', 'LM35', 25.5),
     ('Sensor de Umidade e Temperatura', 'DHT11', 40);
     
-INSERT INTO registro (dataHora, temperatura, fkSensor) VALUES
+INSERT INTO registro(dataHora, temperatura, fkSensor) VALUES
 	('2023-03-13 20:00:00', -15, 1),
     ('2023-03-13 20:05:00', -16.5, 1),
     ('2023-03-13 20:10:00', -16, 1),
     ('2023-03-13 20:15:00', -17, 1),
     ('2023-03-13 20:20:00', -18, 1);
+    
+SELECT * FROM cliente;
+SELECT * FROM sensor;
+SELECT * FROM registro;
+
+-- Apresentando os registro de temperaturas com o nome e tipo do sensor.
+SELECT sensor.nome, sensor.tipo, registro.temperatura, registro.dataHora 
+	FROM sensor JOIN registro
+    ON sensor.idSensor = registro.fkSensor;
